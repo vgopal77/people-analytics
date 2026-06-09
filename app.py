@@ -26,103 +26,171 @@ EMPLOYEES_FILE = os.path.join(BASE_DIR, "employees.csv")
 CSS = """
 <style>
 :root {
-    --navy:   #0d1b2a;
-    --blue:   #1e3a5f;
-    --accent: #2980b9;
-    --gold:   #f39c12;
-    --green:  #27ae60;
-    --red:    #e74c3c;
-    --bg:     #f4f6f9;
-    --card:   #ffffff;
-    --text:   #2c3e50;
-    --muted:  #7f8c8d;
+    --dxc-purple:  #702F8A;
+    --dxc-dark:    #3C1053;
+    --dxc-teal:    #00B0CA;
+    --dxc-teal2:   #007A8C;
+    --dxc-lilac:   #E8D5F5;
+    --green:       #00C897;
+    --amber:       #FF8C00;
+    --red:         #E63946;
+    --bg:          #F7F2FB;
+    --card:        #FFFFFF;
+    --text:        #1A1A1A;
+    --muted:       #6B6B6B;
+    --border:      #E2D5EC;
 }
+
+/* ── global ── */
 [data-testid="stAppViewContainer"] { background: var(--bg); }
+[data-testid="stMain"] { padding-top: 0 !important; }
+
+/* ── sidebar ── */
 [data-testid="stSidebar"] {
-    background: var(--navy) !important;
+    background: linear-gradient(180deg, #3C1053 0%, #702F8A 60%, #9B5CAD 100%) !important;
 }
-[data-testid="stSidebar"] * { color: #ecf0f1 !important; }
+[data-testid="stSidebar"] * { color: #F0E6F8 !important; }
 [data-testid="stSidebar"] .stButton button {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.2);
-    color: #ecf0f1 !important;
-    border-radius: 6px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #F0E6F8 !important;
+    border-radius: 8px;
     width: 100%;
     text-align: left;
-    padding: 8px 14px;
-    margin-bottom: 4px;
-    font-size: 0.9rem;
-    transition: background 0.2s;
+    padding: 10px 14px;
+    margin-bottom: 6px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: background 0.2s, border-color 0.2s;
 }
 [data-testid="stSidebar"] .stButton button:hover {
+    background: rgba(255,255,255,0.18);
+    border-color: rgba(255,255,255,0.35);
+}
+
+/* ── hero banner ── */
+.hero-banner {
+    background: linear-gradient(135deg, #3C1053 0%, #702F8A 55%, #00B0CA 100%);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+.hero-banner::after {
+    content: "";
+    position: absolute;
+    right: -40px; top: -40px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+}
+.hero-title {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+}
+.hero-sub {
+    font-size: 0.92rem;
+    color: rgba(255,255,255,0.75);
+}
+.hero-week {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 3px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+    margin-top: 10px;
+    letter-spacing: 0.04em;
+}
+
+/* ── KPI cards ── */
+.kpi-card {
+    border-radius: 14px;
+    padding: 22px 18px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    min-height: 120px;
+}
+.kpi-card::before {
+    content: "";
+    position: absolute;
+    right: -20px; bottom: -20px;
+    width: 100px; height: 100px;
+    border-radius: 50%;
     background: rgba(255,255,255,0.1);
 }
-.page-title {
-    font-size: 1.7rem;
+.kpi-purple  { background: linear-gradient(135deg, #702F8A, #9B5CAD); }
+.kpi-teal    { background: linear-gradient(135deg, #007A8C, #00B0CA); }
+.kpi-green   { background: linear-gradient(135deg, #00957A, #00C897); }
+.kpi-red     { background: linear-gradient(135deg, #B02030, #E63946); }
+.kpi-icon    { font-size: 1.6rem; margin-bottom: 6px; }
+.kpi-value   { font-size: 2rem; font-weight: 800; line-height: 1.1; color: white; }
+.kpi-label   { font-size: 0.72rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 5px; }
+
+/* ── section header ── */
+.section-header {
+    font-size: 1rem;
     font-weight: 700;
-    color: var(--navy);
+    color: var(--dxc-dark);
+    border-left: 4px solid var(--dxc-purple);
+    padding-left: 10px;
+    margin: 1.6rem 0 0.9rem;
+}
+
+/* ── pending employee cards ── */
+.pending-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 6px;
+}
+.pending-chip {
+    background: white;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--amber);
+    border-radius: 8px;
+    padding: 10px 14px;
+    min-width: 190px;
+    box-shadow: 0 1px 4px rgba(112,47,138,0.08);
+}
+.pending-chip-name { font-weight: 700; font-size: 0.88rem; color: var(--text); }
+.pending-chip-role { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+.pending-chip-since { font-size: 0.72rem; color: var(--dxc-teal2); margin-top: 4px; font-weight: 600; }
+
+/* ── page header ── */
+.page-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--dxc-dark);
     margin-bottom: 0.2rem;
 }
 .page-sub {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--muted);
     margin-bottom: 1.4rem;
 }
-.kpi-card {
-    background: var(--card);
-    border-radius: 10px;
-    padding: 20px 18px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    text-align: center;
-}
-.kpi-value {
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--navy);
-    line-height: 1.1;
-}
-.kpi-label {
-    font-size: 0.78rem;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-top: 4px;
-}
-.badge {
-    display: inline-block;
-    padding: 2px 10px;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: 600;
-}
-.section-header {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--navy);
-    border-left: 4px solid var(--accent);
-    padding-left: 10px;
-    margin: 1.4rem 0 0.8rem;
-}
+
+/* ── survey card ── */
 .survey-card {
     background: var(--card);
-    border-radius: 10px;
-    padding: 24px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border-radius: 12px;
+    padding: 22px 24px;
+    border-left: 4px solid var(--dxc-purple);
+    box-shadow: 0 2px 10px rgba(112,47,138,0.07);
     margin-bottom: 1rem;
 }
-.emp-row {
-    background: var(--card);
-    border-radius: 8px;
-    padding: 12px 16px;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-}
+
 hr.divider {
     border: none;
-    border-top: 1px solid #e0e4ea;
+    border-top: 1px solid var(--border);
     margin: 1.2rem 0;
 }
 </style>
@@ -180,9 +248,11 @@ PAGES = ["Dashboard", "Take Survey", "Employees", "Analytics", "History"]
 def sidebar():
     st.sidebar.markdown(
         """
-        <div style='padding:16px 0 24px;'>
-          <div style='font-size:1.25rem;font-weight:800;color:#ecf0f1;'>People Analytics</div>
-          <div style='font-size:0.78rem;color:#95a5a6;margin-top:2px;'>Bench Engagement Tracker</div>
+        <div style='padding:20px 4px 28px;'>
+          <div style='font-size:0.65rem;font-weight:700;letter-spacing:0.18em;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:6px;'>DXC Technology</div>
+          <div style='font-size:1.2rem;font-weight:800;color:#FFFFFF;line-height:1.2;'>People<br>Analytics</div>
+          <div style='font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:6px;'>Bench Engagement Tracker</div>
+          <div style='height:1px;background:rgba(255,255,255,0.12);margin-top:18px;'></div>
         </div>
         """,
         unsafe_allow_html=True,
@@ -198,8 +268,9 @@ def sidebar():
     week, year = current_week()
     st.sidebar.markdown(
         f"""
-        <div style='margin-top:auto;padding:16px 0 8px;font-size:0.75rem;color:#7f8c8d;'>
-            Week {week} · {year}
+        <div style='height:1px;background:rgba(255,255,255,0.12);margin:16px 0 10px;'></div>
+        <div style='font-size:0.72rem;color:rgba(255,255,255,0.45);padding-bottom:8px;'>
+            Week {week} &nbsp;·&nbsp; {year}
         </div>
         """,
         unsafe_allow_html=True,
@@ -209,12 +280,7 @@ def sidebar():
 # ── page: dashboard ───────────────────────────────────────────────────────────
 
 def page_dashboard():
-    st.markdown('<div class="page-title">Dashboard</div>', unsafe_allow_html=True)
     week, year = current_week()
-    st.markdown(
-        f'<div class="page-sub">Weekly snapshot — Week {week}, {year}</div>',
-        unsafe_allow_html=True,
-    )
 
     employees = load_employees()
     responses = load_responses()
@@ -233,62 +299,149 @@ def page_dashboard():
         avg_score = round(week_df["score"].mean(), 2)
         at_risk = int((week_df["score"] < 3).sum())
 
-    label, colour = score_label(avg_score)
+    score_lbl, score_colour = score_label(avg_score)
+    today_str = datetime.date.today().strftime("%d %b %Y")
 
-    # KPI strip
+    # ── Hero banner ───────────────────────────────────────────────────────────
+    st.markdown(
+        f"""
+        <div class="hero-banner">
+          <div class="hero-title">Bench Engagement Dashboard</div>
+          <div class="hero-sub">Real-time visibility into bench employee satisfaction &amp; readiness</div>
+          <div class="hero-week">Week {week} &nbsp;·&nbsp; {today_str}</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # ── KPI strip ─────────────────────────────────────────────────────────────
     c1, c2, c3, c4 = st.columns(4)
-    for col, val, lbl in [
-        (c1, total, "Bench Headcount"),
-        (c2, f"{pct}%", "Survey Completion"),
-        (c3, f"{avg_score:.1f} / 5", "Avg Engagement"),
-        (c4, at_risk, "At-Risk Employees"),
-    ]:
+    kpis = [
+        (c1, "kpi-purple", "👥", total,             "Bench Headcount"),
+        (c2, "kpi-teal",   "📋", f"{pct}%",         "Survey Completion"),
+        (c3, "kpi-green",  "⭐", f"{avg_score:.1f}/5", "Avg Engagement"),
+        (c4, "kpi-red",    "⚠️", at_risk,            "At-Risk Employees"),
+    ]
+    for col, cls, icon, val, lbl in kpis:
         col.markdown(
-            f'<div class="kpi-card"><div class="kpi-value">{val}</div>'
-            f'<div class="kpi-label">{lbl}</div></div>',
+            f"""<div class="kpi-card {cls}">
+                  <div class="kpi-icon">{icon}</div>
+                  <div class="kpi-value">{val}</div>
+                  <div class="kpi-label">{lbl}</div>
+                </div>""",
             unsafe_allow_html=True,
         )
 
-    st.markdown('<div class="section-header">Pending Submissions This Week</div>', unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    # ── Completion donut  +  Engagement gauge ─────────────────────────────────
+    left, right = st.columns(2)
+
+    with left:
+        st.markdown('<div class="section-header">Survey Completion — Week {}</div>'.format(week), unsafe_allow_html=True)
+        donut = go.Figure(go.Pie(
+            values=[submitted_count, max(total - submitted_count, 0)],
+            labels=["Submitted", "Pending"],
+            hole=0.68,
+            marker_colors=["#702F8A", "#E8D5F5"],
+            textinfo="none",
+            hovertemplate="%{label}: %{value}<extra></extra>",
+        ))
+        donut.update_layout(
+            showlegend=True,
+            legend=dict(orientation="h", x=0.2, y=-0.05),
+            margin=dict(l=20, r=20, t=10, b=20),
+            paper_bgcolor="white",
+            annotations=[dict(
+                text=f"<b>{pct}%</b><br><span style='font-size:11px'>complete</span>",
+                x=0.5, y=0.5, showarrow=False,
+                font=dict(size=22, color="#3C1053"),
+                align="center",
+            )],
+            height=280,
+        )
+        st.plotly_chart(donut, use_container_width=True)
+
+    with right:
+        st.markdown('<div class="section-header">Avg Engagement Score</div>', unsafe_allow_html=True)
+        gauge = go.Figure(go.Indicator(
+            mode="gauge+number+delta",
+            value=avg_score,
+            number={"suffix": " / 5", "font": {"size": 28, "color": "#3C1053"}},
+            delta={"reference": 3.5, "increasing": {"color": "#00C897"}, "decreasing": {"color": "#E63946"}},
+            gauge={
+                "axis": {"range": [0, 5], "tickwidth": 1, "tickcolor": "#6B6B6B"},
+                "bar": {"color": "#702F8A", "thickness": 0.28},
+                "bgcolor": "white",
+                "borderwidth": 0,
+                "steps": [
+                    {"range": [0, 3],   "color": "#FFE5E7"},
+                    {"range": [3, 4],   "color": "#FFF3CD"},
+                    {"range": [4, 5],   "color": "#D4F5EC"},
+                ],
+                "threshold": {
+                    "line": {"color": "#E63946", "width": 2},
+                    "thickness": 0.75,
+                    "value": 3,
+                },
+            },
+            title={"text": f"<b style='color:{score_colour}'>{score_lbl} Engagement</b>", "font": {"size": 14}},
+        ))
+        gauge.update_layout(
+            paper_bgcolor="white",
+            margin=dict(l=30, r=30, t=30, b=10),
+            height=280,
+        )
+        st.plotly_chart(gauge, use_container_width=True)
+
+    # ── Pending submissions ────────────────────────────────────────────────────
     pending = employees[~employees["id"].isin(submitted_ids)]
+    st.markdown('<div class="section-header">Pending Submissions This Week</div>', unsafe_allow_html=True)
+
     if pending.empty:
         st.success("All bench employees have submitted their survey this week!")
     else:
-        cols = st.columns([3, 2, 2])
-        cols[0].markdown("**Name**")
-        cols[1].markdown("**Role**")
-        cols[2].markdown("**Bench Since**")
+        chips_html = '<div class="pending-grid">'
         for _, row in pending.iterrows():
-            c0, c1, c2 = st.columns([3, 2, 2])
-            c0.write(row["name"])
-            c1.write(row["role"])
-            c2.write(row["bench_since"])
+            chips_html += (
+                f'<div class="pending-chip">'
+                f'  <div class="pending-chip-name">{row["name"]}</div>'
+                f'  <div class="pending-chip-role">{row["role"]}</div>'
+                f'  <div class="pending-chip-since">On bench since {row["bench_since"]}</div>'
+                f'</div>'
+            )
+        chips_html += "</div>"
+        st.markdown(chips_html, unsafe_allow_html=True)
 
+    # ── Engagement bar chart ───────────────────────────────────────────────────
     if not week_df.empty and "score" in week_df.columns:
         st.markdown('<div class="section-header">Engagement Scores — Current Week</div>', unsafe_allow_html=True)
-        fig = px.bar(
-            week_df.sort_values("score"),
-            x="score",
-            y="employee_name",
-            orientation="h",
-            color="score",
-            color_continuous_scale=["#e74c3c", "#f39c12", "#27ae60"],
-            range_color=[1, 5],
-            labels={"score": "Engagement Score", "employee_name": ""},
-            height=max(300, len(week_df) * 36),
+        sorted_df = week_df.sort_values("score").copy()
+        sorted_df["colour"] = sorted_df["score"].apply(
+            lambda s: "#00C897" if s >= 4 else ("#FF8C00" if s >= 3 else "#E63946")
         )
+        fig = go.Figure(go.Bar(
+            x=sorted_df["score"],
+            y=sorted_df["employee_name"],
+            orientation="h",
+            marker_color=sorted_df["colour"],
+            text=sorted_df["score"].apply(lambda s: f"{s:.1f}"),
+            textposition="outside",
+            hovertemplate="%{y}: %{x:.2f}<extra></extra>",
+        ))
+        fig.add_vline(x=3, line_dash="dash", line_color="#E63946",
+                      annotation_text="At-risk (3.0)", annotation_font_color="#E63946")
         fig.update_layout(
-            margin=dict(l=0, r=0, t=10, b=0),
+            margin=dict(l=0, r=60, t=10, b=0),
             paper_bgcolor="white",
             plot_bgcolor="white",
-            coloraxis_showscale=False,
-            xaxis=dict(range=[0, 5], gridcolor="#ecf0f1"),
-            yaxis=dict(gridcolor="#ecf0f1"),
+            xaxis=dict(range=[0, 5.5], gridcolor="#F0E6F8", title="Engagement Score"),
+            yaxis=dict(gridcolor="#F0E6F8"),
+            height=max(320, len(week_df) * 38),
         )
-        fig.add_vline(x=3, line_dash="dash", line_color="#e74c3c", annotation_text="At-risk threshold")
         st.plotly_chart(fig, use_container_width=True)
 
-    # Week-on-week trend
+    # ── Week-on-week trend ────────────────────────────────────────────────────
     if not responses.empty:
         trend = responses.copy()
         trend["score"] = trend.apply(engagement_score, axis=1)
@@ -296,23 +449,31 @@ def page_dashboard():
         agg = trend.groupby("week_label")["score"].mean().reset_index().rename(columns={"score": "avg_score"})
 
         if len(agg) >= 2:
-            st.markdown('<div class="section-header">Week-on-Week Trend</div>', unsafe_allow_html=True)
-            fig2 = px.line(
-                agg,
-                x="week_label",
-                y="avg_score",
-                markers=True,
-                labels={"week_label": "Week", "avg_score": "Avg Engagement"},
-            )
-            fig2.update_traces(line_color="#2980b9", marker_color="#2980b9")
+            st.markdown('<div class="section-header">Week-on-Week Engagement Trend</div>', unsafe_allow_html=True)
+            fig2 = go.Figure()
+            fig2.add_hrect(y0=0, y1=3, fillcolor="#E63946", opacity=0.05, line_width=0, annotation_text="At-risk zone", annotation_position="top left", annotation_font_color="#E63946", annotation_font_size=11)
+            fig2.add_hrect(y0=4, y1=5.2, fillcolor="#00C897", opacity=0.05, line_width=0)
+            fig2.add_trace(go.Scatter(
+                x=agg["week_label"],
+                y=agg["avg_score"],
+                mode="lines+markers+text",
+                line=dict(color="#702F8A", width=3),
+                marker=dict(color="#702F8A", size=9, line=dict(color="white", width=2)),
+                text=agg["avg_score"].round(2).astype(str),
+                textposition="top center",
+                textfont=dict(color="#3C1053", size=11),
+                fill="tozeroy",
+                fillcolor="rgba(112,47,138,0.07)",
+                hovertemplate="Week %{x}: %{y:.2f}<extra></extra>",
+            ))
             fig2.update_layout(
                 margin=dict(l=0, r=0, t=10, b=0),
                 paper_bgcolor="white",
                 plot_bgcolor="white",
-                yaxis=dict(range=[0, 5.2], gridcolor="#ecf0f1"),
-                xaxis=dict(gridcolor="#ecf0f1"),
+                yaxis=dict(range=[0, 5.4], gridcolor="#F0E6F8", title="Avg Score"),
+                xaxis=dict(gridcolor="#F0E6F8"),
+                height=300,
             )
-            fig2.add_hrect(y0=0, y1=3, fillcolor="#e74c3c", opacity=0.05, line_width=0)
             st.plotly_chart(fig2, use_container_width=True)
 
 
@@ -505,8 +666,9 @@ def page_analytics():
             r=q_avgs + [q_avgs[0]],
             theta=q_labels + [q_labels[0]],
             fill="toself",
-            fillcolor="rgba(41,128,185,0.2)",
-            line=dict(color="#2980b9"),
+            fillcolor="rgba(112,47,138,0.18)",
+            line=dict(color="#702F8A", width=2),
+            marker=dict(color="#702F8A", size=7),
             name="Avg Score",
         ))
         fig_radar.update_layout(
@@ -528,7 +690,7 @@ def page_analytics():
                 ready_counts,
                 names="status",
                 values="count",
-                color_discrete_sequence=["#27ae60", "#f39c12", "#e74c3c"],
+                color_discrete_sequence=["#00C897", "#FF8C00", "#E63946"],
             )
             fig_pie.update_layout(margin=dict(l=0, r=0, t=10, b=0), paper_bgcolor="white")
             st.plotly_chart(fig_pie, use_container_width=True)
@@ -543,7 +705,7 @@ def page_analytics():
                 x="count",
                 y="activity",
                 orientation="h",
-                color_discrete_sequence=["#2980b9"],
+                color_discrete_sequence=["#702F8A"],
             )
             fig_act.update_layout(
                 margin=dict(l=0, r=0, t=10, b=0),
