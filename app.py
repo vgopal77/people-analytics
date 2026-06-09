@@ -249,7 +249,6 @@ def sidebar():
     st.sidebar.markdown(
         """
         <div style='padding:20px 4px 28px;'>
-          <div style='font-size:0.65rem;font-weight:700;letter-spacing:0.18em;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:6px;'>DXC Technology</div>
           <div style='font-size:1.2rem;font-weight:800;color:#FFFFFF;line-height:1.2;'>People<br>Analytics</div>
           <div style='font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:6px;'>Bench Engagement Tracker</div>
           <div style='height:1px;background:rgba(255,255,255,0.12);margin-top:18px;'></div>
